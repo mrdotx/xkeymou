@@ -1,0 +1,372 @@
+.\"
+.\" Define V font for inline verbatim, using C font in formats
+.\" that render this, and otherwise B font.
+.ie "\f[CB]x\f[]"x" \{\
+. ftr V B
+. ftr VI BI
+. ftr VB B
+. ftr VBI BI
+.\}
+.el \{\
+. ftr V CR
+. ftr VI CI
+. ftr VB CB
+. ftr VBI CBI
+.\}
+.TH "XKEYMOU" "1" "" "Version-VERSION" "xkeymou Manual"
+.hy
+.SH NAME
+.PP
+xkeymou - keyboard mouse for Linux on X11
+.SH SYNOPSIS
+.PP
+\f[B]xkeymou\f[R] [\f[B]-d\f[R]] [\f[B]-i\f[R]]
+.SH DESCRIPTION
+.PP
+\f[B]xkeymou\f[R] is a replacement for the physical mouse in Linux with
+the following features:
+.IP \[bu] 2
+move the mouse with different speeds
+.IP \[bu] 2
+click and grab
+.IP \[bu] 2
+scroll
+.IP \[bu] 2
+execute shell commands
+.SH OPTIONS
+.PP
+Without given settings, start \f[B]xkeymou\f[R].
+.TP
+\f[B]-d\f[R]
+Starts \f[B]xkeymou\f[R] in debug mode and outputs data about movement,
+click, speed, scrolling and execution.
+.TP
+\f[B]-i\f[R]
+Displays information about the version number of the tool.
+.SH CUSTOMIZATION
+.PP
+\f[B]xkeymou\f[R] can be customized by creating/editing a custom
+config.h and (re-)compiling the source code.
+The default values are as follows:
+.TP
+\f[B]move_rate\f[R] = \f[I]50\f[R]
+The rate at which the mouse moves in Hz (Does not change its speed).
+.TP
+\f[B]default_speed\f[R] = \f[I]500\f[R]
+The default speed of the mouse pointer in pixels per second.
+.TP
+\f[B]\f[BI]speed_bindings*\f[B]\f[R]
+Keybindings to change the speed of the mouse pointer.
+.RS
+.PP
+.TS
+tab(@);
+l l.
+T{
+keybinding
+T}@T{
+speed
+T}
+_
+T{
+v
+T}@T{
+2000
+T}
+T{
+z
+T}@T{
+50
+T}
+.TE
+.RE
+.TP
+\f[B]\f[BI]move_bindings*\f[B]\f[R]
+Keybindings to move the mouse pointer.
+It can also any other direction added (e.g.\ diagonals).
+.RS
+.PP
+.TS
+tab(@);
+l r r l.
+T{
+keybinding
+T}@T{
+x
+T}@T{
+y
+T}@T{
+move
+T}
+_
+T{
+up
+T}@T{
+0
+T}@T{
+-1
+T}@T{
+up
+T}
+T{
+down
+T}@T{
+0
+T}@T{
+1
+T}@T{
+down
+T}
+T{
+left
+T}@T{
+-1
+T}@T{
+0
+T}@T{
+left
+T}
+T{
+right
+T}@T{
+1
+T}@T{
+0
+T}@T{
+right
+T}
+.TE
+.RE
+.TP
+\f[B]\f[BI]click_bindings*\f[B]\f[R]
+Keybindings to click the mouse buttons.
+.RS
+.PP
+.TS
+tab(@);
+l c l.
+T{
+keybinding
+T}@T{
+button
+T}@T{
+click
+T}
+_
+T{
+menu
+T}@T{
+1
+T}@T{
+left
+T}
+T{
+space
+T}@T{
+1
+T}@T{
+left
+T}
+T{
+c
+T}@T{
+2
+T}@T{
+middle
+T}
+T{
+x
+T}@T{
+3
+T}@T{
+right
+T}
+.TE
+.RE
+.TP
+\f[B]\f[BI]scroll_bindings*\f[B]\f[R]
+Keybindings to scroll (A higher value scolls faster).
+.RS
+.PP
+.TS
+tab(@);
+l r r l.
+T{
+keybinding
+T}@T{
+x
+T}@T{
+y
+T}@T{
+scroll
+T}
+_
+T{
+d
+T}@T{
+0
+T}@T{
+-25
+T}@T{
+up
+T}
+T{
+s
+T}@T{
+0
+T}@T{
+25
+T}@T{
+down
+T}
+T{
+a
+T}@T{
+-25
+T}@T{
+0
+T}@T{
+left
+T}
+T{
+f
+T}@T{
+25
+T}@T{
+0
+T}@T{
+right
+T}
+T{
+page up
+T}@T{
+0
+T}@T{
+-80
+T}@T{
+up
+T}
+T{
+page down
+T}@T{
+0
+T}@T{
+80
+T}@T{
+down
+T}
+.TE
+.RE
+.TP
+\f[B]\f[BI]shell_bindings*\f[B]\f[R]
+Keybindings to execute shell command.
+.RS
+.PP
+.TS
+tab(@);
+l l.
+T{
+keybinding
+T}@T{
+command
+T}
+_
+T{
+menu
+T}@T{
+i3_macros.sh --mousemove topright
+T}
+T{
+insert
+T}@T{
+i3_macros.sh --mousemove topleft
+T}
+T{
+home
+T}@T{
+i3_macros.sh --mousemove topright
+T}
+T{
+delete
+T}@T{
+i3_macros.sh --mousemove bottomleft
+T}
+T{
+end
+T}@T{
+i3_macros.sh --mousemove bottomright
+T}
+.TE
+.RE
+.TP
+\f[B]\f[BI]exit_keys*\f[B]\f[R]
+Keybindings to exit on key release.
+This allows to click, execute shell command and exit with one key
+press/release.
+.RS
+.PP
+.TS
+tab(@);
+l l.
+T{
+keybinding
+T}@T{
+function
+T}
+_
+T{
+menu
+T}@T{
+click left, moves the pointer and exit
+T}
+T{
+escape
+T}@T{
+exit
+T}
+T{
+q
+T}@T{
+exit
+T}
+.TE
+.RE
+.SH USAGE
+.PP
+When starting \f[B]xkeymou\f[R], it grabs the keyboard with all defined
+bindings.
+When pressing an exit key, the program exits.
+.PP
+The usage is quite intuitive and with some practice, the pointer can be
+moved to a certain position very fast.
+Basically the mouse is controlled by pressing some keys that are defined
+in the config.h file and its default setting, which are described in the
+\f[I]CUSTOMIZATION\f[R] section.
+.SH EXAMPLES
+.PP
+\f[B]xkeymou\f[R]
+.PD 0
+.P
+.PD
+\f[B]xkeymou\f[R] -d
+.PD 0
+.P
+.PD
+\f[B]xkeymou\f[R] -i
+.SH BUGS
+.PP
+See GitHub Issues: \f[I]https://github.com/mrdotx/xkeymou/issues\f[R]
+.SH AUTHORS
+.PP
+\f[B]xkeymou\f[R] is a fork of \f[B]xmouseless\f[R]
+<\f[I]https://github.com/jbensmann/xmouseless\f[R]>.
+.PD 0
+.P
+.PD
+\f[B]xkeymou\f[R] was written by mrdotx <\f[I]klassiker\[at]gmx.de\f[R]>
+.SH SEE ALSO
+.PP
+\f[B]xmouseless\f[R](1), \f[B]mouseless\f[R](1)
+.SH LICENSE
+.PP
+See the \f[I]LICENSE.md\f[R] file for the terms of redistribution.

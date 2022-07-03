@@ -50,6 +50,10 @@ Without given settings, start **xkeymou**.
 
     | keybinding | x  | y  | move  |
     | :--------- | -: | -: | :---- |
+    | k          | 0  | -1 | up    |
+    | j          | 0  | 1  | down  |
+    | h          | -1 | 0  | left  |
+    | l          | 1  | 0  | right |
     | up         | 0  | -1 | up    |
     | down       | 0  | 1  | down  |
     | left       | -1 | 0  | left  |

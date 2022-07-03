@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/config.def.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-03T19:16:48+0200
+ * date:   2022-07-03T21:11:19+0200
  */
 
 static const unsigned int move_rate = 50;
@@ -17,6 +17,10 @@ static SpeedBinding speed_bindings[] = {
 
 static MoveBinding move_bindings[] = {
     /* key          x       y */
+    { XK_k,         0,     -1 },
+    { XK_j,         0,      1 },
+    { XK_h,        -1,      0 },
+    { XK_l,         1,      0 },
     { XK_Up,        0,     -1 },
     { XK_Down,      0,      1 },
     { XK_Left,     -1,      0 },

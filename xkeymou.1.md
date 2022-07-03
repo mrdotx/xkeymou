@@ -65,6 +65,7 @@ Without given settings, start **xkeymou**.
     | keybinding | button | click  |
     | :--------- | :----: | :----- |
     | menu       | 1      | left   |
+    | enter      | 1      | left   |
     | space      | 1      | left   |
     | c          | 2      | middle |
     | x          | 3      | right  |
@@ -98,6 +99,7 @@ Without given settings, start **xkeymou**.
     | keybinding | function                               |
     | :--------- | :------------------------------------- |
     | menu       | click left, moves the pointer and exit |
+    | enter      | click left and exit                    |
     | escape     | exit                                   |
     | q          | exit                                   |
 

@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-03T11:57:18+0200
+ * date:   2022-07-04T18:41:05+0200
  */
 
 #include <stdio.h>
@@ -252,8 +252,8 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
 
             scroll(scroll_x, scroll_y);
             if (debug == 1) \
-                printf("(II) xkeymou: scroll x=%d y=%d\n", \
-                        scroll_x, scroll_y);
+                printf("(II) xkeymou: scroll x=%0.f y=%0.f\n", \
+                        scrollinfo.speed_x, scrollinfo.speed_y);
         }
     }
 

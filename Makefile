@@ -1,7 +1,7 @@
-# path:   /home/klassiker/.local/share/repos/xkeymou/Makefile
+# path:   /home/klassiker/.local/share/repos/xkeymou_/Makefile
 # author: klassiker [mrdotx]
 # github: https://github.com/mrdotx/xkeymou
-# date:   2022-07-03T11:59:48+0200
+# date:   2022-07-04T21:13:47+0200
 
 .POSIX:
 
@@ -30,7 +30,7 @@ $(NAME).1:
 
 .c:
 	@printf "  $@\n"
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $< -lutil
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $<
 
 dist: clean man all
 	@printf "  $(NAME)-$(VERSION).tar.gz\n"

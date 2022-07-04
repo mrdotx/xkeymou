@@ -1,7 +1,7 @@
-# path:   /home/klassiker/.local/share/repos/xkeymou_/Makefile
+# path:   /home/klassiker/.local/share/repos/xkeymou/Makefile
 # author: klassiker [mrdotx]
 # github: https://github.com/mrdotx/xkeymou
-# date:   2022-07-04T21:13:47+0200
+# date:   2022-07-04T21:51:33+0200
 
 .POSIX:
 
@@ -26,7 +26,7 @@ config.h:
 $(NAME).1:
 	@printf "  $@\n"
 	@pandoc -s --to man $@.md -o $@
-	@sed -i '1,2d' $@
+	@sed -i '/^.\\\"/d' $@
 
 .c:
 	@printf "  $@\n"

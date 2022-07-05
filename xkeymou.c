@@ -2,13 +2,12 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-04T18:41:05+0200
+ * date:   2022-07-05T01:09:04+0200
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #include <unistd.h>
 #include <pthread.h>
 
@@ -17,12 +16,7 @@
 #include <X11/XKBlib.h>
 #include <X11/extensions/XTest.h>
 
-#define LENGTH(X)   (sizeof X / sizeof X[0])
-
-enum {
-    SECS_TO_SLEEP = 0,
-    NSEC_TO_SLEEP = 1000000
-};
+#include "util.h"
 
 typedef struct {
     KeySym keysym;
@@ -73,8 +67,6 @@ struct {
           speed_y;
 } scrollinfo;
 
-int nanosleep(const struct timespec *req, struct timespec *rem);
-void sleep_ms(long ms);
 void get_pointer();
 void move_relative(float x, float y);
 void click(unsigned int button, Bool is_press);
@@ -83,16 +75,6 @@ void scroll(float x, float y);
 void handle_key(KeyCode keycode, Bool is_press, int debug);
 void init_x();
 void close_x();
-
-void sleep_ms(long ms)
-{
-    struct timespec remaining, request = {
-        SECS_TO_SLEEP,
-        NSEC_TO_SLEEP * ms
-    };
-
-    nanosleep(&request, &remaining);
-}
 
 void get_pointer() {
     int x,

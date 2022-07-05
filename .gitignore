@@ -1,8 +1,10 @@
 # path:   /home/klassiker/.local/share/repos/xkeymou/.gitignore
 # author: klassiker [mrdotx]
 # github: https://github.com/mrdotx/xkeymou
-# date:   2022-07-02T19:34:34+0200
+# date:   2022-07-04T23:56:04+0200
 
 /config.h
 /xkeymou
+/xkeymou.o
+/util.o
 *.tar.gz

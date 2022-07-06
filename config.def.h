@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/config.def.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-04T18:05:09+0200
+ * date:   2022-07-06T10:46:06+0200
  */
 
 static const unsigned int move_rate = 50;
@@ -28,12 +28,13 @@ static MoveBinding move_bindings[] = {
 };
 
 static ClickBinding click_bindings[] = {
-    /* key          button (1 = left, 2 = middle, 3 = right) */
+    /* key          button (1 = left, 2 = middle, 3 = right, 0 = dummy) */
     { XK_Menu,      1 },
     { XK_BackSpace, 1 },
     { XK_space,     1 },
     { XK_c,         2 },
     { XK_x,         3 },
+    { XK_0,         0 },
 };
 
 static ScrollBinding scroll_bindings[] = {

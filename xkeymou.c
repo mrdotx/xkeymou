@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-05T01:09:04+0200
+ * date:   2022-07-06T11:23:14+0200
  */
 
 #include <stdio.h>
@@ -96,8 +96,10 @@ void move_relative(float x, float y) {
 }
 
 void click(unsigned int button, Bool is_press) {
-    XTestFakeButtonEvent(dpy, button, is_press, CurrentTime);
-    XFlush(dpy);
+    if (button != 0) {
+        XTestFakeButtonEvent(dpy, button, is_press, CurrentTime);
+        XFlush(dpy);
+    }
 }
 
 void click_full(unsigned int button) {
@@ -193,7 +195,8 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
             mouseinfo.speed_y += sign * move_bindings[i].y;
             if (debug == 1) \
                 printf("(II) xkeymou: move x=%.0f y=%.0f\n", \
-                        mouseinfo.speed_x, mouseinfo.speed_y);
+                        mouseinfo.speed_x, \
+                        mouseinfo.speed_y);
         }
     }
 
@@ -201,10 +204,13 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
     for (i = 0; i < LENGTH(click_bindings); i++) {
         if (click_bindings[i].keysym == keysym) {
             click(click_bindings[i].button, is_press);
-            if (debug == 1) \
-                printf("(II) xkeymou: button %i %s\n", \
+            if (debug == 1) { \
+                printf("(II) xkeymou: button %d %s at x=%.0f y=%.0f\n", \
                         click_bindings[i].button, \
-                        is_press ? "pressed" : "released");
+                        is_press ? "pressed" : "released", \
+                        mouseinfo.x, \
+                        mouseinfo.y);
+            }
         }
     }
 
@@ -213,7 +219,8 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
         if (speed_bindings[i].keysym == keysym) {
             speed = is_press ? speed_bindings[i].speed : default_speed;
             if (debug == 1) \
-                printf("(II) xkeymou: speed %i\n", speed);
+                printf("(II) xkeymou: speed %d\n", \
+                        speed);
         }
     }
 
@@ -235,7 +242,8 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
             scroll(scroll_x, scroll_y);
             if (debug == 1) \
                 printf("(II) xkeymou: scroll x=%0.f y=%0.f\n", \
-                        scrollinfo.speed_x, scrollinfo.speed_y);
+                        scrollinfo.speed_x, \
+                        scrollinfo.speed_y);
         }
     }
 

@@ -62,13 +62,16 @@ Without given settings, start **xkeymou**.
 ***click_bindings\****
 : Keybindings to click the mouse buttons.
 
-    | keybinding | button | click  |
-    | :--------- | :----: | :----- |
-    | menu       | 1      | left   |
-    | backspace  | 1      | left   |
-    | space      | 1      | left   |
-    | c          | 2      | middle |
-    | x          | 3      | right  |
+    | keybinding | button | click      |
+    | :--------- | :----: | :--------- |
+    | menu       | 1      | left       |
+    | backspace  | 1      | left       |
+    | space      | 1      | left       |
+    | c          | 2      | middle     |
+    | x          | 3      | right      |
+    | 0          | 0      | dummy[^1]  |
+
+[^1]: in debug mode print the position without click
 
 ***scroll_bindings\****
 : Keybindings to scroll (A higher value scolls faster).

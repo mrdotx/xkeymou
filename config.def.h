@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/config.def.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-06T10:46:06+0200
+ * date:   2022-07-06T15:32:50+0200
  */
 
 static const unsigned int move_rate = 50;
@@ -61,4 +61,16 @@ static KeySym exit_keys[] = {
     XK_BackSpace,
     XK_Escape,
     XK_q
+};
+
+static ShellExec shell_exec[] = {
+    /* point        command (1 = at start, 2 = on exit) */
+    { 1,            "systemctl --user stop xbanish.service"      },
+    { 1,            "polybar_services.sh --update"               },
+    { 1,            "notify-send -t 0 'xkeymou' 'active'         \
+        -h string:x-canonical-private-synchronous:xkeymou"       },
+    { 2,            "notify-send -t 2500 'xkeymou' 'deactivated' \
+        -h string:x-canonical-private-synchronous:xkeymou"       },
+    { 2,            "systemctl --user start xbanish.service"     },
+    { 2,            "polybar_services.sh --update"               },
 };

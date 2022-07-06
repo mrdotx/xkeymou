@@ -35,11 +35,11 @@ execute shell commands
 Without given settings, start \f[B]xkeymou\f[R].
 .TP
 \f[B]-d\f[R]
-Starts \f[B]xkeymou\f[R] in debug mode and outputs data about movement,
-click, speed, scrolling and execution.
+Starts \f[B]xkeymou\f[R] and prints debug messages about move, click,
+speed, scroll, execution to stdout.
 .TP
 \f[B]-i\f[R]
-Displays information about the version number of the tool.
+Prints the version number to stdout.
 .SH CUSTOMIZATION
 .PP
 \f[B]xkeymou\f[R] can be customized by creating/editing a custom
@@ -58,7 +58,7 @@ Keybindings to change the speed of the mouse pointer.
 .PP
 .TS
 tab(@);
-l l.
+l r.
 T{
 keybinding
 T}@T{
@@ -177,58 +177,47 @@ Keybindings to click the mouse buttons.
 .PP
 .TS
 tab(@);
-l c l.
+l c.
 T{
 keybinding
 T}@T{
-button
-T}@T{
-click
+button*
 T}
 _
 T{
 menu
 T}@T{
 1
-T}@T{
-left
 T}
 T{
 backspace
 T}@T{
 1
-T}@T{
-left
 T}
 T{
 space
 T}@T{
 1
-T}@T{
-left
 T}
 T{
 c
 T}@T{
 2
-T}@T{
-middle
 T}
 T{
 x
 T}@T{
 3
-T}@T{
-right
 T}
 T{
 0
 T}@T{
 0
-T}@T{
-dummy[1]
 T}
 .TE
+.PP
+* 1 = left, 2 = middle, 3 = right, 0 = dummy (in debug mode print the
+position without click)
 .RE
 .TP
 \f[B]\f[BI]scroll_bindings*\f[B]\f[R]
@@ -346,6 +335,56 @@ T}
 .TE
 .RE
 .TP
+\f[B]\f[BI]shell_exec*\f[B]\f[R]
+Execute shell command at start or on exit.
+.RS
+.PP
+.TS
+tab(@);
+cw(4.1n) lw(65.9n).
+T{
+point*
+T}@T{
+command
+T}
+_
+T{
+1
+T}@T{
+systemctl --user stop xbanish.service
+T}
+T{
+1
+T}@T{
+polybar_services.sh --update
+T}
+T{
+1
+T}@T{
+notify-send -t 0 \[aq]xkeymou\[aq] \[aq]active\[aq] -h
+string:x-canonical-private-synchronous:xkeymou
+T}
+T{
+2
+T}@T{
+notify-send -t 2500 \[aq]xkeymou\[aq] \[aq]deactivated\[aq] -h
+string:x-canonical-private-synchronous:xkeymou
+T}
+T{
+2
+T}@T{
+systemctl --user start xbanish.service
+T}
+T{
+2
+T}@T{
+polybar_services.sh --update
+T}
+.TE
+.PP
+* 1 = at start, 2 = on exit
+.RE
+.TP
 \f[B]\f[BI]exit_keys*\f[B]\f[R]
 Keybindings to exit on key release.
 This allows to click, execute shell command and exit with one key
@@ -392,8 +431,8 @@ When pressing an exit key, the program exits.
 The usage is quite intuitive and with some practice, the pointer can be
 moved to a certain position very fast.
 Basically the mouse is controlled by pressing some keys that are defined
-in the config.h file and its default setting, which are described in the
-\f[I]CUSTOMIZATION\f[R] section.
+in the config.h file, which are described in the \f[I]CUSTOMIZATION\f[R]
+section.
 .SH EXAMPLES
 .PP
 \f[B]xkeymou\f[R]
@@ -422,7 +461,3 @@ See GitHub Issues: \f[I]https://github.com/mrdotx/xkeymou/issues\f[R]
 .SH LICENSE
 .PP
 See the \f[I]LICENSE.md\f[R] file for the terms of redistribution.
-.SH NOTES
-.SS [1]
-.PP
-in debug mode print the position without click

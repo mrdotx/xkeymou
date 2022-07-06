@@ -22,10 +22,10 @@ xkeymou - keyboard mouse for Linux on X11
 Without given settings, start **xkeymou**.
 
 **-d**
-: Starts **xkeymou** in debug mode and outputs data about movement, click, speed, scrolling and execution.
+: Starts **xkeymou** and prints debug messages about move, click, speed, scroll, execution to stdout.
 
 **-i**
-: Displays information about the version number of the tool.
+: Prints the version number to stdout.
 
 # CUSTOMIZATION
 
@@ -41,7 +41,7 @@ Without given settings, start **xkeymou**.
 : Keybindings to change the speed of the mouse pointer.
 
     | keybinding | speed |
-    | :--------- | :---- |
+    | :--------- | ----: |
     | v          | 2000  |
     | z          | 50    |
 
@@ -62,16 +62,16 @@ Without given settings, start **xkeymou**.
 ***click_bindings\****
 : Keybindings to click the mouse buttons.
 
-    | keybinding | button | click      |
-    | :--------- | :----: | :--------- |
-    | menu       | 1      | left       |
-    | backspace  | 1      | left       |
-    | space      | 1      | left       |
-    | c          | 2      | middle     |
-    | x          | 3      | right      |
-    | 0          | 0      | dummy[^1]  |
+    | keybinding | button* |
+    | :--------- | :-----: |
+    | menu       | 1       |
+    | backspace  | 1       |
+    | space      | 1       |
+    | c          | 2       |
+    | x          | 3       |
+    | 0          | 0       |
 
-[^1]: in debug mode print the position without click
+    \* 1 = left, 2 = middle, 3 = right, 0 = dummy (in debug mode print the position without click)
 
 ***scroll_bindings\****
 : Keybindings to scroll (A higher value scolls faster).
@@ -96,6 +96,20 @@ Without given settings, start **xkeymou**.
     | delete     | i3_macros.sh \--mousemove bottomleft  |
     | end        | i3_macros.sh \--mousemove bottomright |
 
+***shell_exec\****
+: Execute shell command at start or on exit.
+
+    | point* | command                                                                                           |
+    | :----: | :------------------------------------------------------------------------------------------------ |
+    | 1      | systemctl \--user stop xbanish.service                                                            |
+    | 1      | polybar_services.sh \--update                                                                     |
+    | 1      | notify-send -t 0 \'xkeymou\' \'active\' -h string:x-canonical-private-synchronous:xkeymou         |
+    | 2      | notify-send -t 2500 \'xkeymou\' \'deactivated\' -h string:x-canonical-private-synchronous:xkeymou |
+    | 2      | systemctl \--user start xbanish.service                                                           |
+    | 2      | polybar_services.sh \--update                                                                     |
+
+    \* 1 = at start, 2 = on exit
+
 ***exit_keys\****
 : Keybindings to exit on key release. This allows to click, execute shell command and exit with one key press/release.
 
@@ -110,7 +124,7 @@ Without given settings, start **xkeymou**.
 
 When starting **xkeymou**, it grabs the keyboard with all defined bindings. When pressing an exit key, the program exits.
 
-The usage is quite intuitive and with some practice, the pointer can be moved to a certain position very fast. Basically the mouse is controlled by pressing some keys that are defined in the config.h file and its default setting, which are described in the *CUSTOMIZATION* section.
+The usage is quite intuitive and with some practice, the pointer can be moved to a certain position very fast. Basically the mouse is controlled by pressing some keys that are defined in the config.h file, which are described in the *CUSTOMIZATION* section.
 
 # EXAMPLES
 

@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-06T11:23:14+0200
+ * date:   2022-07-06T15:32:30+0200
  */
 
 #include <stdio.h>
@@ -45,6 +45,11 @@ typedef struct {
     char *command;
 } ShellBinding;
 
+typedef struct {
+    int point;
+    char *command;
+} ShellExec;
+
 #include "config.h"
 
 Display *dpy;
@@ -67,6 +72,7 @@ struct {
           speed_y;
 } scrollinfo;
 
+void shell_execute(int point, int debug);
 void get_pointer();
 void move_relative(float x, float y);
 void click(unsigned int button, Bool is_press);
@@ -76,11 +82,28 @@ void handle_key(KeyCode keycode, Bool is_press, int debug);
 void init_x();
 void close_x();
 
+void shell_execute(int point, int debug) {
+    unsigned int i;
+
+    for (i = 0; i < LENGTH(shell_exec); i++) {
+        if (shell_exec[i].point == point) {
+            if (debug == 1) \
+                printf("(++) xkeymou: exec \"%s\"\n", \
+                        shell_exec[i].command);
+            if (fork() == 0) {
+                system(shell_exec[i].command);
+                exit(EXIT_SUCCESS);
+            }
+        }
+    }
+}
+
 void get_pointer() {
     int x,
         y,
         di;
     unsigned int dui;
+
     Window dummy;
     XQueryPointer(dpy, root, &dummy, &dummy, &x, &y, &di, &di, &dui);
     mouseinfo.x = x;
@@ -90,6 +113,7 @@ void get_pointer() {
 void move_relative(float x, float y) {
     mouseinfo.x += x;
     mouseinfo.y += y;
+
     XWarpPointer(dpy, None, root, 0, 0, 0, 0,
             (int) mouseinfo.x, (int) mouseinfo.y);
     XFlush(dpy);
@@ -111,6 +135,7 @@ void click_full(unsigned int button) {
 void scroll(float x, float y) {
     scrollinfo.x += x;
     scrollinfo.y += y;
+
     while (scrollinfo.y <= -0.51) {
         scrollinfo.y += 1;
         click_full(4);
@@ -253,7 +278,7 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
         for (i = 0; i < LENGTH(shell_bindings); i++) {
             if (shell_bindings[i].keysym == keysym) {
                 if (debug == 1) \
-                    printf("(II) xkeymou: exec \"%s\"\n", \
+                    printf("(++) xkeymou: exec \"%s\"\n", \
                             shell_bindings[i].command);
                 if (fork() == 0) {
                     system(shell_bindings[i].command);
@@ -265,6 +290,7 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
         /* exit */
         for (i = 0; i < LENGTH(exit_keys); i++) {
             if (exit_keys[i] == keysym) {
+                shell_execute(2, debug);
                 close_x(EXIT_SUCCESS);
             }
         }
@@ -289,6 +315,8 @@ int main(int argc, char *argv[]) {
             return EXIT_SUCCESS;
         }
     }
+
+    shell_execute(1, debug);
 
     init_x();
 

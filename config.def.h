@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/config.def.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-06T15:32:50+0200
+ * date:   2022-07-06T15:58:15+0200
  */
 
 static const unsigned int move_rate = 50;
@@ -39,10 +39,10 @@ static ClickBinding click_bindings[] = {
 
 static ScrollBinding scroll_bindings[] = {
     /* key          x       y */
-    { XK_d,         0,    -25 },
+    { XK_w,         0,    -25 },
     { XK_s,         0,     25 },
     { XK_a,       -25,      0 },
-    { XK_f,        25,      0 },
+    { XK_d,        25,      0 },
     { XK_Prior,     0,    -80 },
     { XK_Next,      0,     80 },
 };

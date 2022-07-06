@@ -78,10 +78,10 @@ Without given settings, start **xkeymou**.
 
     | keybinding | x   | y   | scroll |
     | :--------- | --: | --: | :----- |
-    | d          | 0   | -25 | up     |
+    | w          | 0   | -25 | up     |
     | s          | 0   | 25  | down   |
     | a          | -25 | 0   | left   |
-    | f          | 25  | 0   | right  |
+    | d          | 25  | 0   | right  |
     | page up    | 0   | -80 | up     |
     | page down  | 0   | 80  | down   |
 

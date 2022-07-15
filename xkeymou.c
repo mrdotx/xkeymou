@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-06T15:32:30+0200
+ * date:   2022-07-15T13:52:15+0200
  */
 
 #include <stdio.h>
@@ -16,40 +16,8 @@
 #include <X11/XKBlib.h>
 #include <X11/extensions/XTest.h>
 
+#include "xkeymou.h"
 #include "util.h"
-
-typedef struct {
-    KeySym keysym;
-    float x,
-          y;
-} MoveBinding;
-
-typedef struct {
-    KeySym keysym;
-    unsigned int button;
-} ClickBinding;
-
-typedef struct {
-    KeySym keysym;
-    float x,
-          y;
-} ScrollBinding;
-
-typedef struct {
-    KeySym keysym;
-    unsigned int speed;
-} SpeedBinding;
-
-typedef struct {
-    KeySym keysym;
-    char *command;
-} ShellBinding;
-
-typedef struct {
-    int point;
-    char *command;
-} ShellExec;
-
 #include "config.h"
 
 Display *dpy;
@@ -72,23 +40,13 @@ struct {
           speed_y;
 } scrollinfo;
 
-void shell_execute(int point, int debug);
-void get_pointer();
-void move_relative(float x, float y);
-void click(unsigned int button, Bool is_press);
-void click_full(unsigned int button);
-void scroll(float x, float y);
-void handle_key(KeyCode keycode, Bool is_press, int debug);
-void init_x();
-void close_x();
-
-void shell_execute(int point, int debug) {
+void shell_execute(int point, int is_debug) {
     unsigned int i;
 
     for (i = 0; i < LENGTH(shell_exec); i++) {
         if (shell_exec[i].point == point) {
-            if (debug == 1) \
-                printf("(++) xkeymou: exec \"%s\"\n", \
+            if (is_debug) \
+                printf("(++) xkeymou: exec   = %s\n", \
                         shell_exec[i].command);
             if (fork() == 0) {
                 system(shell_exec[i].command);
@@ -119,7 +77,7 @@ void move_relative(float x, float y) {
     XFlush(dpy);
 }
 
-void click(unsigned int button, Bool is_press) {
+void click(unsigned int button, int is_press) {
     if (button != 0) {
         XTestFakeButtonEvent(dpy, button, is_press, CurrentTime);
         XFlush(dpy);
@@ -170,14 +128,14 @@ void init_x() {
 
     /* grab keys until success */
     for (i = 0; i < 100; i++) {
-        if (XGrabKeyboard(dpy, root, False, GrabModeAsync,
+        if (XGrabKeyboard(dpy, root, 0, GrabModeAsync,
                 GrabModeAsync, CurrentTime) == GrabSuccess) {
             return;
         }
         sleep_ms(10);
     }
 
-    printf("(EE) xkeymou: grab keyboard failed\n");
+    printf("(EE) xkeymou: grab keyboard failed.\n");
     close_x(EXIT_FAILURE);
 }
 
@@ -206,7 +164,7 @@ void *move_forever(void *val) {
     }
 }
 
-void handle_key(KeyCode keycode, Bool is_press, int debug) {
+void handle_key(KeyCode keycode, int is_press, int is_debug) {
     unsigned int i;
     KeySym keysym;
 
@@ -218,8 +176,9 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
             int sign = is_press ? 1 : -1;
             mouseinfo.speed_x += sign * move_bindings[i].x;
             mouseinfo.speed_y += sign * move_bindings[i].y;
-            if (debug == 1) \
-                printf("(II) xkeymou: move x=%.0f y=%.0f\n", \
+            if (is_debug) \
+                printf("(II) xkeymou: move   = %s [x=%.0f y=%.0f]\n", \
+                        get_direction(mouseinfo.speed_x, mouseinfo.speed_y), \
                         mouseinfo.speed_x, \
                         mouseinfo.speed_y);
         }
@@ -229,9 +188,9 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
     for (i = 0; i < LENGTH(click_bindings); i++) {
         if (click_bindings[i].keysym == keysym) {
             click(click_bindings[i].button, is_press);
-            if (debug == 1) { \
-                printf("(II) xkeymou: button %d %s at x=%.0f y=%.0f\n", \
-                        click_bindings[i].button, \
+            if (is_debug) { \
+                printf("(II) xkeymou: button = %s %s [x=%.0f y=%.0f]\n", \
+                        get_button(click_bindings[i].button), \
                         is_press ? "pressed" : "released", \
                         mouseinfo.x, \
                         mouseinfo.y);
@@ -243,8 +202,8 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
     for (i = 0; i < LENGTH(speed_bindings); i++) {
         if (speed_bindings[i].keysym == keysym) {
             speed = is_press ? speed_bindings[i].speed : default_speed;
-            if (debug == 1) \
-                printf("(II) xkeymou: speed %d\n", \
+            if (is_debug) \
+                printf("(II) xkeymou: speed  = %d\n", \
                         speed);
         }
     }
@@ -265,8 +224,9 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
             if (scrollinfo.speed_y > 0) scroll_y = 1;
 
             scroll(scroll_x, scroll_y);
-            if (debug == 1) \
-                printf("(II) xkeymou: scroll x=%0.f y=%0.f\n", \
+            if (is_debug) \
+                printf("(II) xkeymou: scroll = %s [x=%0.f y=%0.f]\n", \
+                        get_direction(scrollinfo.speed_x, scrollinfo.speed_y),\
                         scrollinfo.speed_x, \
                         scrollinfo.speed_y);
         }
@@ -277,8 +237,8 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
         /* shell bindings */
         for (i = 0; i < LENGTH(shell_bindings); i++) {
             if (shell_bindings[i].keysym == keysym) {
-                if (debug == 1) \
-                    printf("(++) xkeymou: exec \"%s\"\n", \
+                if (is_debug) \
+                    printf("(++) xkeymou: exec   = %s\n", \
                             shell_bindings[i].command);
                 if (fork() == 0) {
                     system(shell_bindings[i].command);
@@ -290,7 +250,7 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
         /* exit */
         for (i = 0; i < LENGTH(exit_keys); i++) {
             if (exit_keys[i] == keysym) {
-                shell_execute(2, debug);
+                shell_execute(2, is_debug);
                 close_x(EXIT_SUCCESS);
             }
         }
@@ -299,14 +259,14 @@ void handle_key(KeyCode keycode, Bool is_press, int debug) {
 
 int main(int argc, char *argv[]) {
     char keys_return[32];
-    int debug = 0,
+    int is_debug = 0,
         rc,
         i,
         j;
 
     if (1 < argc) {
         if (0 == strcmp(argv[1], "-d")) {
-            debug = 1;
+            is_debug = 1;
         } else if (0 == strcmp(argv[1], "-i")) {
             puts("xkeymou-"VERSION);
             return EXIT_SUCCESS;
@@ -316,7 +276,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    shell_execute(1, debug);
+    shell_execute(1, is_debug);
 
     init_x();
 
@@ -342,7 +302,7 @@ int main(int argc, char *argv[]) {
     for (i = 0; i < 32; i++) {
         for (j = 0; j < 8; j++) {
             if (keys_return[i] & (1<<j)) {
-                handle_key(8 * i + j, 1, debug);
+                handle_key(8 * i + j, 1, 0);
             }
         }
     }
@@ -357,7 +317,7 @@ int main(int argc, char *argv[]) {
             case KeyRelease:
                 get_pointer();
                 handle_key(event.xkey.keycode, \
-                        event.xkey.type == KeyPress, debug);
+                        event.xkey.type == KeyPress, is_debug);
                 break;
         }
     }

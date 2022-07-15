@@ -1,7 +1,7 @@
 # path:   /home/klassiker/.local/share/repos/xkeymou/Makefile
 # author: klassiker [mrdotx]
 # github: https://github.com/mrdotx/xkeymou
-# date:   2022-07-05T10:21:01+0200
+# date:   2022-07-15T13:28:33+0200
 
 .POSIX:
 
@@ -51,6 +51,7 @@ dist: clean man all
 		util.h \
 		$(SRC) \
 		$(NAME).1 \
+		$(NAME).h \
 		$(NAME)-$(VERSION)
 	@tar -cf - $(NAME)-$(VERSION) | gzip > $(NAME)-$(VERSION).tar.gz
 	@rm -rf $(NAME)-$(VERSION)

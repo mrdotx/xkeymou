@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-15T13:52:15+0200
+ * date:   2022-07-16T14:02:01+0200
  */
 
 #include <stdio.h>
@@ -189,9 +189,8 @@ void handle_key(KeyCode keycode, int is_press, int is_debug) {
         if (click_bindings[i].keysym == keysym) {
             click(click_bindings[i].button, is_press);
             if (is_debug) { \
-                printf("(II) xkeymou: button = %s %s [x=%.0f y=%.0f]\n", \
-                        get_button(click_bindings[i].button), \
-                        is_press ? "pressed" : "released", \
+                printf("(II) xkeymou: button = %s [x=%.0f y=%.0f]\n", \
+                        get_button(click_bindings[i].button, is_press), \
                         mouseinfo.x, \
                         mouseinfo.y);
             }

@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/util.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-16T11:35:09+0200
+ * date:   2022-07-16T13:26:53+0200
  */
 
 /* macros */
@@ -16,4 +16,4 @@ enum {
 int nanosleep(const struct timespec *req, struct timespec *rem);
 void sleep_ms(long ms);
 const char *get_direction(int x, int y);
-const char *get_button(int button);
+const char *get_button(int button, int is_press);

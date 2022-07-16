@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-15T13:04:48+0200
+ * date:   2022-07-16T11:53:09+0200
  */
 
 #include <X11/XKBlib.h>
@@ -31,12 +31,12 @@ typedef struct {
 
 typedef struct {
     KeySym keysym;
-    char *command;
+    char const*command;
 } ShellBinding;
 
 typedef struct {
     int point;
-    char *command;
+    char const*command;
 } ShellExec;
 
 void shell_execute(int point, int is_debug);

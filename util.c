@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/util.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-16T14:05:12+0200
+ * date:   2022-07-16T19:35:53+0200
  */
 
 #include <stdio.h>
@@ -40,15 +40,22 @@ const char *get_direction(int x, int y) {
 const char *get_button(int button, int is_press) {
     static char string[16];
 
-    if (0 == button) sprintf(string, "DUMMY %s ", \
-            is_press ? "pressed " : "released");
+    char *status = is_press ? "pressed " : "released";
 
-    if (1 == button) sprintf(string, "LEFT %s  ", \
-            is_press ? "pressed " : "released");
-    if (2 == button) sprintf(string, "MIDDLE %s", \
-            is_press ? "pressed " : "released");
-    if (3 == button) sprintf(string, "RIGHT %s ", \
-            is_press ? "pressed " : "released");
+    switch(button) {
+        case 0:
+            sprintf(string, "DUMMY %s ", status);
+            break;
+        case 1:
+            sprintf(string, "LEFT %s  ", status);
+            break;
+        case 2:
+            sprintf(string, "MIDDLE %s", status);
+            break;
+        case 3:
+            sprintf(string, "RIGHT %s ", status);
+            break;
+    }
 
     return string;
 }

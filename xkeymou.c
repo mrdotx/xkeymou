@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-16T14:02:01+0200
+ * date:   2022-07-16T19:50:02+0200
  */
 
 #include <stdio.h>
@@ -291,7 +291,7 @@ int main(int argc, char *argv[]) {
 
     /* start the thread for mouse movement and scrolling */
     rc = pthread_create(&movethread, NULL, &move_forever, NULL);
-    if( rc != 0 ) {
+    if(rc != 0) {
         printf("(EE) xkeymou: unable to start thread.\n");
         return EXIT_FAILURE;
     }

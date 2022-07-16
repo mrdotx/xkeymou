@@ -2,11 +2,16 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/util.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-15T14:02:17+0200
+ * date:   2022-07-16T11:35:09+0200
  */
 
 /* macros */
 #define LENGTH(X)   (sizeof X / sizeof X[0])
+
+enum {
+    SECS_TO_SLEEP = 0,
+    NSEC_TO_SLEEP = 1000000
+};
 
 int nanosleep(const struct timespec *req, struct timespec *rem);
 void sleep_ms(long ms);

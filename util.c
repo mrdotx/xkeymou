@@ -2,18 +2,13 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/util.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-15T14:02:45+0200
+ * date:   2022-07-16T11:35:00+0200
  */
 
 #include <stdio.h>
 #include <time.h>
 
 #include "util.h"
-
-enum {
-    SECS_TO_SLEEP = 0,
-    NSEC_TO_SLEEP = 1000000
-};
 
 void sleep_ms(long ms) {
     struct timespec remaining, request = {

@@ -90,11 +90,11 @@ Without given settings, start **xkeymou**.
 
     | keybinding | command                               |
     | :--------- | :------------------------------------ |
-    | menu       | i3_macros.sh \--mousemove topright    |
-    | insert     | i3_macros.sh \--mousemove topleft     |
-    | home       | i3_macros.sh \--mousemove topright    |
-    | delete     | i3_macros.sh \--mousemove bottomleft  |
-    | end        | i3_macros.sh \--mousemove bottomright |
+    | menu       | i3_macros.sh \--movemouse topright    |
+    | insert     | i3_macros.sh \--movemouse topleft     |
+    | home       | i3_macros.sh \--movemouse topright    |
+    | delete     | i3_macros.sh \--movemouse bottomleft  |
+    | end        | i3_macros.sh \--movemouse bottomright |
 
 ***shell_exec\****
 : Execute shell command at start or on exit.

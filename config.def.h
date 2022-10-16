@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/config.def.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-15T09:31:03+0200
+ * date:   2022-10-16T18:04:55+0200
  */
 
 static const unsigned int move_rate = 50;
@@ -49,11 +49,11 @@ static ScrollBinding scroll_bindings[] = {
 
 static ShellBinding shell_bindings[] = {
     /* key          command */
-    { XK_Menu,      "i3_macros.sh --mousemove topright"    },
-    { XK_Insert,    "i3_macros.sh --mousemove topleft"     },
-    { XK_Home,      "i3_macros.sh --mousemove topright"    },
-    { XK_Delete,    "i3_macros.sh --mousemove bottomleft"  },
-    { XK_End,       "i3_macros.sh --mousemove bottomright" },
+    { XK_Menu,      "i3_macros.sh --movemouse topright"    },
+    { XK_Insert,    "i3_macros.sh --movemouse topleft"     },
+    { XK_Home,      "i3_macros.sh --movemouse topright"    },
+    { XK_Delete,    "i3_macros.sh --movemouse bottomleft"  },
+    { XK_End,       "i3_macros.sh --movemouse bottomright" },
 };
 
 static ShellExec shell_exec[] = {

@@ -1,8 +1,8 @@
-.TH "XKEYMOU" "1" "" "Version-VERSION" "xkeymou Manual"
+.TH "XKEYMOU" "1" "" "Version\-VERSION" "xkeymou Manual"
 .SH NAME
-xkeymou - keyboard mouse for Linux on X11
+xkeymou \- keyboard mouse for Linux on X11
 .SH SYNOPSIS
-\f[B]xkeymou\f[R] [\f[B]-d\f[R]] [\f[B]-i\f[R]]
+\f[B]xkeymou\f[R] [\f[B]\-d\f[R]] [\f[B]\-i\f[R]]
 .SH DESCRIPTION
 \f[B]xkeymou\f[R] is a replacement for the physical mouse in Linux with
 the following features:
@@ -17,15 +17,15 @@ execute shell commands
 .SH OPTIONS
 Without given settings, start \f[B]xkeymou\f[R].
 .TP
-\f[B]-d\f[R]
+\f[B]\-d\f[R]
 Starts \f[B]xkeymou\f[R] and prints debug messages about move, click,
 speed, scroll, execution to stdout.
 .TP
-\f[B]-i\f[R]
+\f[B]\-i\f[R]
 Prints the version number to stdout.
 .SH CUSTOMIZATION
 \f[B]xkeymou\f[R] can be customized by creating/editing a custom
-config.h and (re-)compiling the source code.
+config.h and (re\-)compiling the source code.
 The default values are as follows:
 .TP
 \f[B]move_rate\f[R] = \f[I]50\f[R]
@@ -83,7 +83,7 @@ k
 T}@T{
 0
 T}@T{
--1
+\-1
 T}@T{
 up
 T}
@@ -99,7 +99,7 @@ T}
 T{
 h
 T}@T{
--1
+\-1
 T}@T{
 0
 T}@T{
@@ -119,7 +119,7 @@ up
 T}@T{
 0
 T}@T{
--1
+\-1
 T}@T{
 up
 T}
@@ -135,7 +135,7 @@ T}
 T{
 left
 T}@T{
--1
+\-1
 T}@T{
 0
 T}@T{
@@ -224,7 +224,7 @@ w
 T}@T{
 0
 T}@T{
--25
+\-25
 T}@T{
 up
 T}
@@ -240,7 +240,7 @@ T}
 T{
 a
 T}@T{
--25
+\-25
 T}@T{
 0
 T}@T{
@@ -260,7 +260,7 @@ page up
 T}@T{
 0
 T}@T{
--80
+\-80
 T}@T{
 up
 T}
@@ -292,27 +292,27 @@ _
 T{
 menu
 T}@T{
-i3_macros.sh --movemouse topright
+i3_macros.sh \-\-movemouse topright
 T}
 T{
 insert
 T}@T{
-i3_macros.sh --movemouse topleft
+i3_macros.sh \-\-movemouse topleft
 T}
 T{
 home
 T}@T{
-i3_macros.sh --movemouse topright
+i3_macros.sh \-\-movemouse topright
 T}
 T{
 delete
 T}@T{
-i3_macros.sh --movemouse bottomleft
+i3_macros.sh \-\-movemouse bottomleft
 T}
 T{
 end
 T}@T{
-i3_macros.sh --movemouse bottomright
+i3_macros.sh \-\-movemouse bottomright
 T}
 .TE
 .RE
@@ -333,34 +333,34 @@ _
 T{
 1
 T}@T{
-systemctl --user stop xbanish.service
+systemctl \-\-user stop xbanish.service
 T}
 T{
 1
 T}@T{
-polybar_services.sh --update
+polybar_services.sh \-\-update
 T}
 T{
 1
 T}@T{
-notify-send -t 0 \[aq]xkeymou\[aq] \[aq]active\[aq] -h
-string:x-canonical-private-synchronous:xkeymou
+notify\-send \-t 0 \[aq]xkeymou\[aq] \[aq]active\[aq] \-h
+string:x\-canonical\-private\-synchronous:xkeymou
 T}
 T{
 2
 T}@T{
-notify-send -t 2500 \[aq]xkeymou\[aq] \[aq]deactivated\[aq] -h
-string:x-canonical-private-synchronous:xkeymou
+notify\-send \-t 2500 \[aq]xkeymou\[aq] \[aq]deactivated\[aq] \-h
+string:x\-canonical\-private\-synchronous:xkeymou
 T}
 T{
 2
 T}@T{
-systemctl --user start xbanish.service
+systemctl \-\-user start xbanish.service
 T}
 T{
 2
 T}@T{
-polybar_services.sh --update
+polybar_services.sh \-\-update
 T}
 .TE
 .PP
@@ -420,11 +420,11 @@ section.
 .PD 0
 .P
 .PD
-\f[B]xkeymou\f[R] -d
+\f[B]xkeymou\f[R] \-d
 .PD 0
 .P
 .PD
-\f[B]xkeymou\f[R] -i
+\f[B]xkeymou\f[R] \-i
 .SH BUGS
 See GitHub Issues: \f[I]https://github.com/mrdotx/xkeymou/issues\f[R]
 .SH AUTHORS

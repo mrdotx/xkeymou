@@ -88,13 +88,13 @@ Without given settings, start **xkeymou**.
 ***shell_bindings\****
 : Keybindings to execute shell command.
 
-    | keybinding | command                               |
-    | :--------- | :------------------------------------ |
-    | menu       | i3_macros.sh \--movemouse topright    |
-    | insert     | i3_macros.sh \--movemouse topleft     |
-    | home       | i3_macros.sh \--movemouse topright    |
-    | delete     | i3_macros.sh \--movemouse bottomleft  |
-    | end        | i3_macros.sh \--movemouse bottomright |
+    | keybinding | command                      |
+    | :--------- | :--------------------------- |
+    | menu       | i3_macros.sh \--movemouse ne |
+    | insert     | i3_macros.sh \--movemouse nw |
+    | home       | i3_macros.sh \--movemouse ne |
+    | delete     | i3_macros.sh \--movemouse sw |
+    | end        | i3_macros.sh \--movemouse se |
 
 ***shell_exec\****
 : Execute shell command at start or on exit.

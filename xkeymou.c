@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.c
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2022-07-16T19:50:02+0200
+ * date:   2024-05-13T08:48:38+0200
  */
 
 #include <stdio.h>
@@ -45,8 +45,8 @@ void shell_execute(int point, int is_debug) {
 
     for (i = 0; i < LENGTH(shell_exec); i++) {
         if (shell_exec[i].point == point) {
-            if (is_debug) \
-                printf("(++) xkeymou: exec   = %s\n", \
+            if (is_debug)
+                printf("(++) xkeymou: exec   = %s\n",
                         shell_exec[i].command);
             if (fork() == 0) {
                 system(shell_exec[i].command);
@@ -176,10 +176,10 @@ void handle_key(KeyCode keycode, int is_press, int is_debug) {
             int sign = is_press ? 1 : -1;
             mouseinfo.speed_x += sign * move_bindings[i].x;
             mouseinfo.speed_y += sign * move_bindings[i].y;
-            if (is_debug) \
-                printf("(II) xkeymou: move   = %s [x=%.0f y=%.0f]\n", \
-                        get_direction(mouseinfo.speed_x, mouseinfo.speed_y), \
-                        mouseinfo.speed_x, \
+            if (is_debug)
+                printf("(II) xkeymou: move   = %s [x=%.0f y=%.0f]\n",
+                        get_direction(mouseinfo.speed_x, mouseinfo.speed_y),
+                        mouseinfo.speed_x,
                         mouseinfo.speed_y);
         }
     }
@@ -188,10 +188,10 @@ void handle_key(KeyCode keycode, int is_press, int is_debug) {
     for (i = 0; i < LENGTH(click_bindings); i++) {
         if (click_bindings[i].keysym == keysym) {
             click(click_bindings[i].button, is_press);
-            if (is_debug) { \
-                printf("(II) xkeymou: button = %s [x=%.0f y=%.0f]\n", \
-                        get_button(click_bindings[i].button, is_press), \
-                        mouseinfo.x, \
+            if (is_debug) {
+                printf("(II) xkeymou: button = %s [x=%.0f y=%.0f]\n",
+                        get_button(click_bindings[i].button, is_press),
+                        mouseinfo.x,
                         mouseinfo.y);
             }
         }
@@ -201,8 +201,8 @@ void handle_key(KeyCode keycode, int is_press, int is_debug) {
     for (i = 0; i < LENGTH(speed_bindings); i++) {
         if (speed_bindings[i].keysym == keysym) {
             speed = is_press ? speed_bindings[i].speed : default_speed;
-            if (is_debug) \
-                printf("(II) xkeymou: speed  = %d\n", \
+            if (is_debug)
+                printf("(II) xkeymou: speed  = %d\n",
                         speed);
         }
     }
@@ -223,10 +223,10 @@ void handle_key(KeyCode keycode, int is_press, int is_debug) {
             if (scrollinfo.speed_y > 0) scroll_y = 1;
 
             scroll(scroll_x, scroll_y);
-            if (is_debug) \
-                printf("(II) xkeymou: scroll = %s [x=%0.f y=%0.f]\n", \
-                        get_direction(scrollinfo.speed_x, scrollinfo.speed_y),\
-                        scrollinfo.speed_x, \
+            if (is_debug)
+                printf("(II) xkeymou: scroll = %s [x=%0.f y=%0.f]\n",
+                        get_direction(scrollinfo.speed_x, scrollinfo.speed_y),
+                        scrollinfo.speed_x,
                         scrollinfo.speed_y);
         }
     }
@@ -236,8 +236,8 @@ void handle_key(KeyCode keycode, int is_press, int is_debug) {
         /* shell bindings */
         for (i = 0; i < LENGTH(shell_bindings); i++) {
             if (shell_bindings[i].keysym == keysym) {
-                if (is_debug) \
-                    printf("(++) xkeymou: exec   = %s\n", \
+                if (is_debug)
+                    printf("(++) xkeymou: exec   = %s\n",
                             shell_bindings[i].command);
                 if (fork() == 0) {
                     system(shell_bindings[i].command);
@@ -315,7 +315,7 @@ int main(int argc, char *argv[]) {
             case KeyPress:
             case KeyRelease:
                 get_pointer();
-                handle_key(event.xkey.keycode, \
+                handle_key(event.xkey.keycode,
                         event.xkey.type == KeyPress, is_debug);
                 break;
         }

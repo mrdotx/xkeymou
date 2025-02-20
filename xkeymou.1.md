@@ -101,11 +101,11 @@ Without given settings, start **xkeymou**.
 
     | point* | command                                                                                           |
     | :----: | :------------------------------------------------------------------------------------------------ |
-    | 1      | systemctl \--user stop xbanish.service                                                            |
+    | 1      | systemctl \--user stop xhidecursor.service                                                        |
     | 1      | polybar_services.sh \--update                                                                     |
     | 1      | notify-send -t 0 \'xkeymou\' \'active\' -h string:x-canonical-private-synchronous:xkeymou         |
     | 2      | notify-send -t 2500 \'xkeymou\' \'deactivated\' -h string:x-canonical-private-synchronous:xkeymou |
-    | 2      | systemctl \--user start xbanish.service                                                           |
+    | 2      | systemctl \--user start xhidecursor.service                                                       |
     | 2      | polybar_services.sh \--update                                                                     |
 
     \* 1 = at start, 2 = on exit

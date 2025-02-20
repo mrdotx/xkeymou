@@ -1,11 +1,11 @@
 # path:   /home/klassiker/.local/share/repos/xkeymou/config.mk
 # author: klassiker [mrdotx]
 # github: https://github.com/mrdotx/xkeymou
-# date:   2024-05-13T08:50:08+0200
+# date:   2025-02-20T16:23:03+0100
 
 # tool info
 NAME = xkeymou
-VERSION = 0.1.5
+VERSION = 0.1.6
 
 # paths
 PREFIX = /usr/local

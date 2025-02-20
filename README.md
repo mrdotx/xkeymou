@@ -1,6 +1,6 @@
 # xkeymou
 
-This program is a replacement for the physical mouse in Linux.
+This program is a replacement for the physical mouse in Linux on X11.
 
 ## Installation
 

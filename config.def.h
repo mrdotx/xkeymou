@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/config.def.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2025-02-20T06:55:25+0100
+ * date:   2025-03-06T06:46:53+0100
  */
 
 static const unsigned int move_rate = 50;
@@ -58,12 +58,12 @@ static ShellBinding shell_bindings[] = {
 
 static ShellExec shell_exec[] = {
     /* point        command (1 = at start, 2 = on exit) */
-    { 1,            "systemctl --user stop xhidecursor.service"                                                     },
-    { 1,            "polybar_services.sh --update"                                                                  },
-    { 1,            "notify-send -t 0 'xkeymou' 'active' -h string:x-canonical-private-synchronous:xkeymou"         },
-    { 2,            "notify-send -t 2500 'xkeymou' 'deactivated' -h string:x-canonical-private-synchronous:xkeymou" },
-    { 2,            "systemctl --user start xhidecursor.service"                                                    },
-    { 2,            "polybar_services.sh --update"                                                                  },
+    { 1,            "systemctl --user stop xhidecursor.service"                                                      },
+    { 1,            "polybar_services.sh --update"                                                                   },
+    { 1,            "notify-send -t 2147483647 'xkeymou' 'active' -h string:x-canonical-private-synchronous:xkeymou" },
+    { 2,            "notify-send -t 2500 'xkeymou' 'deactivated' -h string:x-canonical-private-synchronous:xkeymou"  },
+    { 2,            "systemctl --user start xhidecursor.service"                                                     },
+    { 2,            "polybar_services.sh --update"                                                                   },
 };
 
 static KeySym exit_keys[] = {

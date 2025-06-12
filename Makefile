@@ -1,7 +1,7 @@
 # path:   /home/klassiker/.local/share/repos/xkeymou/Makefile
 # author: klassiker [mrdotx]
 # github: https://github.com/mrdotx/xkeymou
-# date:   2022-07-15T13:28:33+0200
+# date:   2025-06-12T04:56:47+0200
 
 .POSIX:
 
@@ -72,7 +72,7 @@ uninstall:
 	@rm -f $(DESTDIR)$(MANDIR)/man1/$(NAME).1
 
 clean:
-	@printf "$(NAME) -> clean build directory:\n"
+	@printf "$(NAME) -> clean up build directory:\n"
 	@printf "  $(NAME)-$(VERSION).tar.gz\n"
 	@rm -f $(NAME)-$(VERSION).tar.gz
 	@printf "  $(NAME)\n"

@@ -2,7 +2,7 @@
  * path:   /home/klassiker/.local/share/repos/xkeymou/config.def.h
  * author: klassiker [mrdotx]
  * github: https://github.com/mrdotx/xkeymou
- * date:   2025-03-06T06:46:53+0100
+ * date:   2025-07-18T05:32:17+0200
  */
 
 static const unsigned int move_rate = 50;
@@ -49,11 +49,11 @@ static ScrollBinding scroll_bindings[] = {
 
 static ShellBinding shell_bindings[] = {
     /* key          command */
-    { XK_Menu,      "i3_mouse_move.sh ne" },
-    { XK_Insert,    "i3_mouse_move.sh nw" },
-    { XK_Home,      "i3_mouse_move.sh ne" },
-    { XK_Delete,    "i3_mouse_move.sh sw" },
-    { XK_End,       "i3_mouse_move.sh se" },
+    { XK_Menu,      "i3_mouse_move.sh -ne --notify" },
+    { XK_Insert,    "i3_mouse_move.sh -nw --notify" },
+    { XK_Home,      "i3_mouse_move.sh -ne --notify" },
+    { XK_Delete,    "i3_mouse_move.sh -sw --notify" },
+    { XK_End,       "i3_mouse_move.sh -se --notify" },
 };
 
 static ShellExec shell_exec[] = {

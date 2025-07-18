@@ -88,13 +88,13 @@ Without given settings, start **xkeymou**.
 ***shell_bindings\****
 : Keybindings to execute shell command.
 
-    | keybinding | command             |
-    | :--------- | :------------------ |
-    | menu       | i3_mouse_move.sh ne |
-    | insert     | i3_mouse_move.sh nw |
-    | home       | i3_mouse_move.sh ne |
-    | delete     | i3_mouse_move.sh sw |
-    | end        | i3_mouse_move.sh se |
+    | keybinding | command                        |
+    | :--------- | :----------------------------- |
+    | menu       | i3_mouse_move.sh -ne \--notify |
+    | insert     | i3_mouse_move.sh -nw \--notify |
+    | home       | i3_mouse_move.sh -ne \--notify |
+    | delete     | i3_mouse_move.sh -sw \--notify |
+    | end        | i3_mouse_move.sh -se \--notify |
 
 ***shell_exec\****
 : Execute shell command at start or on exit.

@@ -6,13 +6,13 @@ xkeymou \- keyboard mouse for Linux on X11
 .SH DESCRIPTION
 \f[B]xkeymou\f[R] is a replacement for the physical mouse in Linux with
 the following features:
-.IP \[bu] 2
+.IP \(bu 2
 move the mouse with different speeds
-.IP \[bu] 2
+.IP \(bu 2
 click and grab
-.IP \[bu] 2
+.IP \(bu 2
 scroll
-.IP \[bu] 2
+.IP \(bu 2
 execute shell commands
 .SH OPTIONS
 Without given settings, start \f[B]xkeymou\f[R].
@@ -292,27 +292,27 @@ _
 T{
 menu
 T}@T{
-i3_mouse_move.sh ne
+i3_mouse_move.sh \-ne \-\-notify
 T}
 T{
 insert
 T}@T{
-i3_mouse_move.sh nw
+i3_mouse_move.sh \-nw \-\-notify
 T}
 T{
 home
 T}@T{
-i3_mouse_move.sh ne
+i3_mouse_move.sh \-ne \-\-notify
 T}
 T{
 delete
 T}@T{
-i3_mouse_move.sh sw
+i3_mouse_move.sh \-sw \-\-notify
 T}
 T{
 end
 T}@T{
-i3_mouse_move.sh se
+i3_mouse_move.sh \-se \-\-notify
 T}
 .TE
 .RE
@@ -343,13 +343,13 @@ T}
 T{
 1
 T}@T{
-notify\-send \-t 2147483647 \[aq]xkeymou\[aq] \[aq]active\[aq] \-h
+notify\-send \-t 2147483647 \(aqxkeymou\(aq \(aqactive\(aq \-h
 string:x\-canonical\-private\-synchronous:xkeymou
 T}
 T{
 2
 T}@T{
-notify\-send \-t 2500 \[aq]xkeymou\[aq] \[aq]deactivated\[aq] \-h
+notify\-send \-t 2500 \(aqxkeymou\(aq \(aqdeactivated\(aq \-h
 string:x\-canonical\-private\-synchronous:xkeymou
 T}
 T{
@@ -434,7 +434,7 @@ See GitHub Issues: \f[I]https://github.com/mrdotx/xkeymou/issues\f[R]
 .PD 0
 .P
 .PD
-\f[B]xkeymou\f[R] was written by mrdotx <\f[I]klassiker\[at]gmx.de\f[R]>
+\f[B]xkeymou\f[R] was written by mrdotx <\f[I]klassiker\(atgmx.de\f[R]>
 .SH SEE ALSO
 \f[B]xmouseless\f[R](1), \f[B]mouseless\f[R](1)
 .SH LICENSE

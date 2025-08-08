@@ -1,8 +1,8 @@
 /*
  * path:   /home/klassiker/.local/share/repos/xkeymou/xkeymou.c
  * author: klassiker [mrdotx]
- * github: https://github.com/mrdotx/xkeymou
- * date:   2024-05-13T08:48:38+0200
+ * url:    https://github.com/mrdotx/xkeymou
+ * date:   2025-08-08T05:31:13+0200
  */
 
 #include <stdio.h>

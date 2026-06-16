@@ -1,8 +1,8 @@
 /*
- * path:   /home/klassiker/.local/share/repos/xkeymou/config.def.h
+ * path:   /home/klassiker/Projects/repos/xkeymou/config.def.h
  * author: klassiker [mrdotx]
  * url:    https://github.com/mrdotx/xkeymou
- * date:   2025-08-08T05:30:46+0200
+ * date:   2026-06-16T04:51:02+0200
  */
 
 static const unsigned int move_rate = 50;

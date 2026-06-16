@@ -1,7 +1,7 @@
-# path:   /home/klassiker/.local/share/repos/xkeymou/Makefile
+# path:   /home/klassiker/Projects/repos/xkeymou/Makefile
 # author: klassiker [mrdotx]
 # url:    https://github.com/mrdotx/xkeymou
-# date:   2025-08-08T05:30:59+0200
+# date:   2026-06-16T04:51:13+0200
 
 .POSIX:
 

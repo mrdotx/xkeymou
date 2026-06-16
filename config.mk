@@ -1,7 +1,7 @@
-# path:   /home/klassiker/.local/share/repos/xkeymou/config.mk
+# path:   /home/klassiker/Projects/repos/xkeymou/config.mk
 # author: klassiker [mrdotx]
 # url:    https://github.com/mrdotx/xkeymou
-# date:   2025-08-08T05:30:53+0200
+# date:   2026-06-16T04:51:09+0200
 
 # tool info
 NAME = xkeymou
